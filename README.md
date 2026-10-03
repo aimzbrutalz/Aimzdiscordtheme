@@ -1,30 +1,35 @@
-# Aimz Discord Theme
+# Aimz Discord Theme — Soul Phantom Edition
 
-A dark Discord custom CSS theme based on the Aimz red looping-A logo.
+This version keeps the same Frosted Glass / Server Columns / Radial Status style framework used by the supplied reference theme, while using:
 
-## Files
+- The supplied Soul Phantom Blade artwork as the Discord background.
+- The supplied Aimz logo as the Home button.
+- Aimz red/black accents.
+- Frosted/glass sidebars, chat and popouts.
+- Quicksand font.
+- Two-column server layout.
+- Radial status indicators.
 
-- `Aimz.theme.css` — main Discord theme
-- `assets/aimz-logo.png` — Aimz logo used by the theme
+## Repository layout
 
-## Install
+```text
+Aimzdiscordtheme/
+├── Aimz-Soul-Phantom.theme.css
+├── README.md
+└── assets/
+    ├── aimz-logo.png
+    └── aimz-background.jpg
+```
 
-### Vencord
-1. Put `Aimz.theme.css` in your Vencord themes directory.
-2. Enable the theme in **Settings → Themes**.
-3. The theme references the logo from this GitHub repository.
+## BetterDiscord
 
-### BetterDiscord
-Place `Aimz.theme.css` in the BetterDiscord themes directory and enable it from the Themes settings.
+Copy `Aimz-Soul-Phantom.theme.css` into your BetterDiscord themes folder and enable it under Discord Settings → Themes.
 
-## GitHub
+The CSS references the assets through GitHub raw URLs:
 
-Repository:
+```text
+https://raw.githubusercontent.com/aimzbrutalz/Aimzdiscordtheme/main/assets/aimz-logo.png
+https://raw.githubusercontent.com/aimzbrutalz/Aimzdiscordtheme/main/assets/aimz-background.jpg
+```
 
-https://github.com/aimzbrutalz/Aimzdiscordtheme
-
-The CSS expects the logo at:
-
-`assets/aimz-logo.png`
-
-If the repository uses a branch other than `main`, change the `--aimz-logo` URL in the CSS.
+The repository therefore needs the two files in `assets/` on the `main` branch.
