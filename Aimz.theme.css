@@ -1,0 +1,398 @@
+/**
+ * @name Aimz Discord Theme
+ * @author Aimz
+ * @description A dark, red-accented Discord theme built around the Aimz logo.
+ * @version 1.0.0
+ * @source https://github.com/aimzbrutalz/Aimzdiscordtheme
+ */
+
+/* =========================
+   AIMZ THEME VARIABLES
+   ========================= */
+
+:root {
+  --aimz-red: #ed1c24;
+  --aimz-red-bright: #ff3038;
+  --aimz-red-dark: #9f1016;
+  --aimz-black: #050505;
+  --aimz-black-2: #090909;
+  --aimz-panel: #101010;
+  --aimz-panel-2: #151515;
+  --aimz-border: rgba(237, 28, 36, 0.22);
+  --aimz-glow: 0 0 18px rgba(237, 28, 36, 0.22);
+  --aimz-logo: url("https://raw.githubusercontent.com/aimzbrutalz/Aimzdiscordtheme/main/assets/aimz-logo.png");
+}
+
+/* =========================
+   CORE DISCORD COLORS
+   ========================= */
+
+.theme-dark {
+  --background-primary: var(--aimz-black);
+  --background-secondary: #080808;
+  --background-secondary-alt: #0d0d0d;
+  --background-tertiary: #050505;
+  --background-floating: #101010;
+  --background-mobile-primary: var(--aimz-black);
+  --background-mobile-secondary: #080808;
+  --background-accent: var(--aimz-red);
+
+  --channeltextarea-background: #101010;
+  --input-background: #0d0d0d;
+
+  --text-normal: #eeeeee;
+  --text-muted: #8e8e8e;
+  --header-primary: #ffffff;
+  --header-secondary: #b9b9b9;
+  --interactive-normal: #bcbcbc;
+  --interactive-hover: #ffffff;
+  --interactive-active: var(--aimz-red-bright);
+  --interactive-muted: #555555;
+
+  --scrollbar-thin-thumb: rgba(237, 28, 36, 0.55);
+  --scrollbar-thin-track: transparent;
+  --scrollbar-auto-thumb: rgba(237, 28, 36, 0.48);
+  --scrollbar-auto-track: transparent;
+
+  --status-danger: var(--aimz-red);
+}
+
+/* =========================
+   GLOBAL BACKGROUND
+   ========================= */
+
+body,
+#app-mount {
+  background:
+    radial-gradient(circle at 50% -10%, rgba(237, 28, 36, 0.10), transparent 34%),
+    linear-gradient(135deg, #030303 0%, #090909 52%, #040404 100%) !important;
+}
+
+/* Subtle red atmosphere behind the app */
+#app-mount::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9999;
+  background:
+    radial-gradient(circle at 10% 90%, rgba(237, 28, 36, 0.045), transparent 28%),
+    radial-gradient(circle at 90% 10%, rgba(237, 28, 36, 0.04), transparent 30%);
+}
+
+/* =========================
+   SERVER LIST
+   ========================= */
+
+nav[aria-label="Servers sidebar"] {
+  background: #030303 !important;
+}
+
+nav[aria-label="Servers sidebar"] [data-list-item-id] {
+  transition:
+    transform 160ms ease,
+    filter 160ms ease;
+}
+
+nav[aria-label="Servers sidebar"] [data-list-item-id]:hover {
+  transform: translateY(-1px);
+  filter: drop-shadow(0 0 8px rgba(237, 28, 36, 0.24));
+}
+
+/* Aimz home icon */
+[data-list-item-id="guildsnav___home"] .childWrapper__3ed4f,
+[data-list-item-id="guildsnav___home"] [class*="childWrapper"] {
+  background: #050505 !important;
+  box-shadow:
+    inset 0 0 0 1px rgba(237, 28, 36, 0.20),
+    0 0 0 rgba(237, 28, 36, 0);
+  transition: all 180ms ease;
+}
+
+[data-list-item-id="guildsnav___home"] [class*="childWrapper"] svg {
+  display: none !important;
+}
+
+[data-list-item-id="guildsnav___home"] [class*="childWrapper"]::before {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: var(--aimz-logo) center / 72% 72% no-repeat;
+  filter: drop-shadow(0 0 5px rgba(237, 28, 36, 0.25));
+}
+
+[data-list-item-id="guildsnav___home"]:hover [class*="childWrapper"] {
+  background: #090909 !important;
+  box-shadow:
+    inset 0 0 0 1px rgba(237, 28, 36, 0.50),
+    0 0 16px rgba(237, 28, 36, 0.20);
+}
+
+/* =========================
+   CHANNEL SIDEBAR
+   ========================= */
+
+[class*="sidebar"] {
+  background: linear-gradient(180deg, #070707 0%, #0a0a0a 100%) !important;
+  border-right: 1px solid rgba(237, 28, 36, 0.10);
+}
+
+[class*="containerDefault"]:hover [class*="link"] {
+  background: rgba(237, 28, 36, 0.07) !important;
+}
+
+[class*="containerDefault"] [class*="link"][aria-selected="true"],
+[class*="modeSelected"] [class*="link"] {
+  background:
+    linear-gradient(90deg, rgba(237, 28, 36, 0.16), rgba(237, 28, 36, 0.035)) !important;
+  box-shadow: inset 2px 0 0 var(--aimz-red);
+}
+
+[class*="containerDefault"] [class*="name"],
+[class*="containerDefault"] [class*="channelName"] {
+  transition: color 160ms ease;
+}
+
+[class*="containerDefault"]:hover [class*="name"],
+[class*="containerDefault"]:hover [class*="channelName"] {
+  color: #ffffff !important;
+}
+
+[class*="containerDefault"] svg {
+  color: #777777;
+}
+
+[class*="containerDefault"]:hover svg,
+[class*="modeSelected"] svg {
+  color: var(--aimz-red-bright);
+}
+
+/* =========================
+   SERVER / CHANNEL HEADER
+   ========================= */
+
+[class*="title"] {
+  background: rgba(5, 5, 5, 0.90) !important;
+}
+
+header[class*="header"] {
+  border-bottom: 1px solid rgba(237, 28, 36, 0.10);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.20);
+}
+
+/* =========================
+   CHAT AREA
+   ========================= */
+
+main[class*="chatContent"] {
+  background:
+    radial-gradient(circle at 50% 0%, rgba(237, 28, 36, 0.035), transparent 35%),
+    #080808 !important;
+}
+
+[class*="message"] {
+  transition: background 120ms ease;
+}
+
+[class*="message"]:hover {
+  background: rgba(237, 28, 36, 0.025) !important;
+}
+
+[class*="mentioned"] {
+  background: rgba(237, 28, 36, 0.075) !important;
+  border-left: 2px solid var(--aimz-red);
+}
+
+[class*="mentioned"]:hover {
+  background: rgba(237, 28, 36, 0.11) !important;
+}
+
+/* =========================
+   MESSAGE BOX
+   ========================= */
+
+[class*="channelTextArea"] {
+  background: transparent !important;
+}
+
+[class*="channelTextArea"] [class*="scrollableContainer"] {
+  background: #101010 !important;
+  border: 1px solid rgba(237, 28, 36, 0.12);
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 255, 255, 0.01),
+    0 8px 30px rgba(0, 0, 0, 0.22);
+  transition: border-color 160ms ease, box-shadow 160ms ease;
+}
+
+[class*="channelTextArea"] [class*="scrollableContainer"]:focus-within {
+  border-color: rgba(237, 28, 36, 0.48);
+  box-shadow: var(--aimz-glow);
+}
+
+/* =========================
+   BUTTONS
+   ========================= */
+
+button:hover,
+[role="button"]:hover {
+  transition: color 140ms ease, background 140ms ease, box-shadow 140ms ease;
+}
+
+button[class*="lookFilled"],
+button[class*="lookFilled"]:hover {
+  background: var(--aimz-red) !important;
+}
+
+button[class*="lookFilled"]:hover {
+  box-shadow: 0 0 14px rgba(237, 28, 36, 0.25);
+}
+
+/* =========================
+   LINKS + ACCENTS
+   ========================= */
+
+a {
+  color: var(--aimz-red-bright);
+}
+
+a:hover {
+  color: #ff6268;
+}
+
+/* =========================
+   SEARCH
+   ========================= */
+
+[class*="searchBar"] {
+  background: #101010 !important;
+  border: 1px solid rgba(237, 28, 36, 0.10);
+}
+
+[class*="searchBar"]:focus-within {
+  border-color: rgba(237, 28, 36, 0.38);
+  box-shadow: 0 0 12px rgba(237, 28, 36, 0.12);
+}
+
+/* =========================
+   POPOVERS / MENUS
+   ========================= */
+
+[class*="popout"],
+[class*="menu"],
+[class*="layerContainer"] [class*="container"] {
+  background: #0c0c0c !important;
+  border: 1px solid rgba(237, 28, 36, 0.13);
+  box-shadow:
+    0 18px 50px rgba(0, 0, 0, 0.55),
+    0 0 20px rgba(237, 28, 36, 0.06);
+}
+
+[class*="item"]:hover {
+  background: rgba(237, 28, 36, 0.10) !important;
+}
+
+[class*="item"][aria-selected="true"] {
+  background: rgba(237, 28, 36, 0.14) !important;
+  color: #ffffff !important;
+}
+
+/* =========================
+   MEMBERS
+   ========================= */
+
+[class*="membersWrap"],
+[class*="member"],
+[class*="membersGroup"] {
+  background: transparent !important;
+}
+
+[class*="membersWrap"] [class*="member"]:hover {
+  background: rgba(237, 28, 36, 0.055) !important;
+}
+
+/* =========================
+   SCROLLBARS
+   ========================= */
+
+::-webkit-scrollbar {
+  width: 7px;
+  height: 7px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(237, 28, 36, 0.32);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(237, 28, 36, 0.62);
+}
+
+/* =========================
+   SELECTION
+   ========================= */
+
+::selection {
+  background: rgba(237, 28, 36, 0.35);
+  color: #ffffff;
+}
+
+/* =========================
+   AIMZ RED STATUS / BADGES
+   ========================= */
+
+[class*="numberBadge"] {
+  background-color: var(--aimz-red) !important;
+}
+
+[class*="unread"] [class*="unreadPill"] {
+  background: var(--aimz-red) !important;
+}
+
+/* =========================
+   OPTIONAL LOGO WATERMARK
+   Set --aimz-watermark-opacity to 0 to disable.
+   ========================= */
+
+:root {
+  --aimz-watermark-opacity: 0.018;
+}
+
+main[class*="chatContent"]::after {
+  content: "";
+  position: absolute;
+  width: 420px;
+  height: 420px;
+  right: 4%;
+  bottom: 2%;
+  pointer-events: none;
+  background: var(--aimz-logo) center / contain no-repeat;
+  opacity: var(--aimz-watermark-opacity);
+  filter: grayscale(1);
+}
+
+/* =========================
+   RED GLOW FOR ACTIVE ELEMENTS
+   ========================= */
+
+[class*="selected"]::after,
+[aria-selected="true"]::after {
+  box-shadow: 0 0 12px rgba(237, 28, 36, 0.12);
+}
+
+/* =========================
+   REDUCE HARSH DISCORD WHITE
+   ========================= */
+
+[class*="icon"] {
+  transition: color 140ms ease, filter 140ms ease;
+}
+
+[class*="icon"]:hover {
+  filter: drop-shadow(0 0 4px rgba(237, 28, 36, 0.20));
+}
