@@ -1,0 +1,9 @@
+{
+  "name": "aimz-red-soul-phantom",
+  "version": "2.3.0",
+  "author": "Aimz",
+  "theme": "Aimz-Red-Soul-Phantom.theme.css",
+  "background": "assets/soul-phantom-blade.jpg",
+  "dependencies": [],
+  "homeIcon": "discord-default"
+}
