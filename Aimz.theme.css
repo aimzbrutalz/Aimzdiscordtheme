@@ -1,398 +1,289 @@
 /**
- * @name Aimz Discord Theme
+ * @name Aimz Soul Phantom
  * @author Aimz
- * @description A dark, red-accented Discord theme built around the Aimz logo.
- * @version 1.0.0
+ * @version 2.0.0
+ * @description Aimz Discord theme using the Frosted Glass / Server Columns / Radial Status UI style, with the supplied Soul Phantom Blade background and Aimz logo.
  * @source https://github.com/aimzbrutalz/Aimzdiscordtheme
  */
 
-/* =========================
-   AIMZ THEME VARIABLES
-   ========================= */
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@100;300;400;500;700&display=swap');
+@import url('https://discordstyles.github.io/FrostedGlass/dist/FrostedGlass.css');
+@import url('https://discordstyles.github.io/Addons/windows-titlebar.css');
+@import url('https://mwittrien.github.io/BetterDiscordAddons/Themes/ServerColumns/ServerColumns.css');
+@import url('https://discordstyles.github.io/RadialStatus/dist/RadialStatus.css');
+@import url('https://nyri4.github.io/Discolored/main.css');
+
+/*
+ * The reference theme supplied by the user uses the same external UI
+ * layers/imports and exposes its design through CSS variables.
+ * This Aimz version keeps that structure while replacing the visual
+ * identity with the supplied background and logo.
+ */
 
 :root {
+  /* ===== Background ===== */
+  --background-image: url('https://raw.githubusercontent.com/aimzbrutalz/Aimzdiscordtheme/main/assets/aimz-background.jpg');
+  --background-image-blur: 0px;
+  --background-image-size: cover;
+  --background-image-position: center;
+
+  /* ===== Popouts / modals ===== */
+  --popout-modal-image: url('https://raw.githubusercontent.com/aimzbrutalz/Aimzdiscordtheme/main/assets/aimz-background.jpg');
+  --popout-modal-blur: 0px;
+  --popout-modal-size: cover;
+  --popout-modal-position: center;
+
+  /* ===== Aimz Home Logo ===== */
+  --home-button-image: url('https://raw.githubusercontent.com/aimzbrutalz/Aimzdiscordtheme/main/assets/aimz-logo.png');
+  --home-button-size: cover;
+  --home-button-position: center;
+
+  /* ===== Brightness / Frosted Glass ===== */
+  --serverlist-brightness: 0.42;
+  --left-brightness: 0.52;
+  --middle-brightness: 0.42;
+  --right-brightness: 0.34;
+  --popout-modal-brightness: 0.48;
+
+  /* ===== Aimz red palette ===== */
+  --gradient-primary: 237, 28, 36;
+  --gradient-secondary: 75, 8, 12;
+  --link-colour: #ff3b43;
+  --scrollbar-colour: rgba(237, 28, 36, 0.42);
+  --gradient-direction: 320deg;
+
+  /* ===== Typography ===== */
+  --font: Quicksand;
+
+  /* ===== Window ===== */
+  --window-padding: 0px;
+  --window-roundness: 0px;
+  --update-notice-1: none;
+
+  /* ===== Server columns ===== */
+  --columns: 2;
+  --guildgap: 2;
+  --aligndms: 0;
+
+  /* ===== Radial Status ===== */
+  --rs-small-spacing: 0px;
+  --rs-medium-spacing: 0px;
+  --rs-large-spacing: 0px;
+  --rs-small-width: 2.5px;
+  --rs-medium-width: 2.5px;
+  --rs-large-width: 2px;
+  --rs-avatar-shape: 50%;
+  --rs-online-color: #ed1c24;
+  --rs-idle-color: #ee9a0e;
+  --rs-dnd-color: #f12222;
+  --rs-offline-color: #636b75;
+  --rs-streaming-color: #6e29e4;
+  --rs-phone-visible: block;
+
+  /* ===== Discord/Aimz colors ===== */
   --aimz-red: #ed1c24;
   --aimz-red-bright: #ff3038;
-  --aimz-red-dark: #9f1016;
+  --aimz-red-dark: #8e0f14;
   --aimz-black: #050505;
-  --aimz-black-2: #090909;
-  --aimz-panel: #101010;
-  --aimz-panel-2: #151515;
+  --aimz-glass: rgba(5, 5, 5, 0.70);
+  --aimz-glass-heavy: rgba(3, 3, 3, 0.86);
   --aimz-border: rgba(237, 28, 36, 0.22);
   --aimz-glow: 0 0 18px rgba(237, 28, 36, 0.22);
-  --aimz-logo: url("https://raw.githubusercontent.com/aimzbrutalz/Aimzdiscordtheme/main/assets/aimz-logo.png");
 }
 
-/* =========================
-   CORE DISCORD COLORS
-   ========================= */
-
-.theme-dark {
-  --background-primary: var(--aimz-black);
-  --background-secondary: #080808;
-  --background-secondary-alt: #0d0d0d;
-  --background-tertiary: #050505;
-  --background-floating: #101010;
-  --background-mobile-primary: var(--aimz-black);
-  --background-mobile-secondary: #080808;
-  --background-accent: var(--aimz-red);
-
-  --channeltextarea-background: #101010;
-  --input-background: #0d0d0d;
-
-  --text-normal: #eeeeee;
-  --text-muted: #8e8e8e;
-  --header-primary: #ffffff;
-  --header-secondary: #b9b9b9;
-  --interactive-normal: #bcbcbc;
-  --interactive-hover: #ffffff;
-  --interactive-active: var(--aimz-red-bright);
-  --interactive-muted: #555555;
-
-  --scrollbar-thin-thumb: rgba(237, 28, 36, 0.55);
-  --scrollbar-thin-track: transparent;
-  --scrollbar-auto-thumb: rgba(237, 28, 36, 0.48);
-  --scrollbar-auto-track: transparent;
-
-  --status-danger: var(--aimz-red);
-}
-
-/* =========================
-   GLOBAL BACKGROUND
-   ========================= */
+/* ===== Full-screen visual treatment ===== */
 
 body,
 #app-mount {
-  background:
-    radial-gradient(circle at 50% -10%, rgba(237, 28, 36, 0.10), transparent 34%),
-    linear-gradient(135deg, #030303 0%, #090909 52%, #040404 100%) !important;
+  background-color: #050505 !important;
 }
 
-/* Subtle red atmosphere behind the app */
+/* Keep the supplied artwork visible behind the Frosted Glass UI. */
+#app-mount::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -10;
+  pointer-events: none;
+  background:
+    linear-gradient(
+      90deg,
+      rgba(0,0,0,.48) 0%,
+      rgba(0,0,0,.25) 45%,
+      rgba(0,0,0,.40) 100%
+    ),
+    url('https://raw.githubusercontent.com/aimzbrutalz/Aimzdiscordtheme/main/assets/aimz-background.jpg')
+    center / cover no-repeat;
+}
+
+/* Red atmospheric overlay */
 #app-mount::before {
   content: "";
   position: fixed;
   inset: 0;
+  z-index: -9;
   pointer-events: none;
-  z-index: 9999;
   background:
-    radial-gradient(circle at 10% 90%, rgba(237, 28, 36, 0.045), transparent 28%),
-    radial-gradient(circle at 90% 10%, rgba(237, 28, 36, 0.04), transparent 30%);
+    radial-gradient(circle at 82% 28%, rgba(237,28,36,.16), transparent 28%),
+    radial-gradient(circle at 8% 78%, rgba(237,28,36,.10), transparent 30%);
+  mix-blend-mode: screen;
 }
 
-/* =========================
-   SERVER LIST
-   ========================= */
+/* ===== Aimz branding ===== */
 
-nav[aria-label="Servers sidebar"] {
-  background: #030303 !important;
-}
-
-nav[aria-label="Servers sidebar"] [data-list-item-id] {
-  transition:
-    transform 160ms ease,
-    filter 160ms ease;
-}
-
-nav[aria-label="Servers sidebar"] [data-list-item-id]:hover {
-  transform: translateY(-1px);
-  filter: drop-shadow(0 0 8px rgba(237, 28, 36, 0.24));
-}
-
-/* Aimz home icon */
-[data-list-item-id="guildsnav___home"] .childWrapper__3ed4f,
+/* Discord home button */
 [data-list-item-id="guildsnav___home"] [class*="childWrapper"] {
-  background: #050505 !important;
+  background: rgba(0,0,0,.78) !important;
+  background-image: var(--home-button-image) !important;
+  background-position: center !important;
+  background-size: 72% !important;
+  background-repeat: no-repeat !important;
   box-shadow:
-    inset 0 0 0 1px rgba(237, 28, 36, 0.20),
-    0 0 0 rgba(237, 28, 36, 0);
-  transition: all 180ms ease;
+    inset 0 0 0 1px rgba(237,28,36,.28),
+    0 0 14px rgba(237,28,36,.10);
 }
 
 [data-list-item-id="guildsnav___home"] [class*="childWrapper"] svg {
   display: none !important;
 }
 
-[data-list-item-id="guildsnav___home"] [class*="childWrapper"]::before {
-  content: "";
-  display: block;
-  width: 100%;
-  height: 100%;
-  background: var(--aimz-logo) center / 72% 72% no-repeat;
-  filter: drop-shadow(0 0 5px rgba(237, 28, 36, 0.25));
-}
-
 [data-list-item-id="guildsnav___home"]:hover [class*="childWrapper"] {
-  background: #090909 !important;
   box-shadow:
-    inset 0 0 0 1px rgba(237, 28, 36, 0.50),
-    0 0 16px rgba(237, 28, 36, 0.20);
+    inset 0 0 0 1px rgba(237,28,36,.65),
+    0 0 20px rgba(237,28,36,.25);
 }
 
-/* =========================
-   CHANNEL SIDEBAR
-   ========================= */
+/* ===== Red glass accents ===== */
+
+[class*="sidebar"],
+[class*="membersWrap"],
+[class*="panels"],
+[class*="container"],
+[class*="title"] {
+  backdrop-filter: blur(8px);
+}
 
 [class*="sidebar"] {
-  background: linear-gradient(180deg, #070707 0%, #0a0a0a 100%) !important;
-  border-right: 1px solid rgba(237, 28, 36, 0.10);
+  background: rgba(3,3,3,.56) !important;
+  border-right: 1px solid rgba(237,28,36,.12);
 }
 
-[class*="containerDefault"]:hover [class*="link"] {
-  background: rgba(237, 28, 36, 0.07) !important;
+main[class*="chatContent"] {
+  background: rgba(4,4,4,.26) !important;
 }
 
-[class*="containerDefault"] [class*="link"][aria-selected="true"],
-[class*="modeSelected"] [class*="link"] {
+[class*="membersWrap"] {
+  background: rgba(3,3,3,.40) !important;
+  border-left: 1px solid rgba(237,28,36,.10);
+}
+
+/* Selected channels */
+[class*="modeSelected"] [class*="link"],
+[class*="containerDefault"] [class*="link"][aria-selected="true"] {
   background:
-    linear-gradient(90deg, rgba(237, 28, 36, 0.16), rgba(237, 28, 36, 0.035)) !important;
+    linear-gradient(
+      90deg,
+      rgba(237,28,36,.20),
+      rgba(237,28,36,.035)
+    ) !important;
   box-shadow: inset 2px 0 0 var(--aimz-red);
 }
 
-[class*="containerDefault"] [class*="name"],
-[class*="containerDefault"] [class*="channelName"] {
-  transition: color 160ms ease;
+/* Channel hover */
+[class*="containerDefault"]:hover [class*="link"] {
+  background: rgba(237,28,36,.09) !important;
 }
 
-[class*="containerDefault"]:hover [class*="name"],
-[class*="containerDefault"]:hover [class*="channelName"] {
-  color: #ffffff !important;
-}
-
-[class*="containerDefault"] svg {
-  color: #777777;
-}
-
-[class*="containerDefault"]:hover svg,
-[class*="modeSelected"] svg {
-  color: var(--aimz-red-bright);
-}
-
-/* =========================
-   SERVER / CHANNEL HEADER
-   ========================= */
-
-[class*="title"] {
-  background: rgba(5, 5, 5, 0.90) !important;
-}
-
-header[class*="header"] {
-  border-bottom: 1px solid rgba(237, 28, 36, 0.10);
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.20);
-}
-
-/* =========================
-   CHAT AREA
-   ========================= */
-
-main[class*="chatContent"] {
-  background:
-    radial-gradient(circle at 50% 0%, rgba(237, 28, 36, 0.035), transparent 35%),
-    #080808 !important;
-}
-
-[class*="message"] {
-  transition: background 120ms ease;
-}
-
-[class*="message"]:hover {
-  background: rgba(237, 28, 36, 0.025) !important;
-}
-
-[class*="mentioned"] {
-  background: rgba(237, 28, 36, 0.075) !important;
-  border-left: 2px solid var(--aimz-red);
-}
-
-[class*="mentioned"]:hover {
-  background: rgba(237, 28, 36, 0.11) !important;
-}
-
-/* =========================
-   MESSAGE BOX
-   ========================= */
-
-[class*="channelTextArea"] {
-  background: transparent !important;
-}
-
-[class*="channelTextArea"] [class*="scrollableContainer"] {
-  background: #101010 !important;
-  border: 1px solid rgba(237, 28, 36, 0.12);
-  box-shadow:
-    inset 0 0 0 1px rgba(255, 255, 255, 0.01),
-    0 8px 30px rgba(0, 0, 0, 0.22);
-  transition: border-color 160ms ease, box-shadow 160ms ease;
-}
-
-[class*="channelTextArea"] [class*="scrollableContainer"]:focus-within {
-  border-color: rgba(237, 28, 36, 0.48);
-  box-shadow: var(--aimz-glow);
-}
-
-/* =========================
-   BUTTONS
-   ========================= */
-
-button:hover,
-[role="button"]:hover {
-  transition: color 140ms ease, background 140ms ease, box-shadow 140ms ease;
-}
-
-button[class*="lookFilled"],
-button[class*="lookFilled"]:hover {
+/* Buttons */
+button[class*="lookFilled"] {
   background: var(--aimz-red) !important;
 }
 
 button[class*="lookFilled"]:hover {
-  box-shadow: 0 0 14px rgba(237, 28, 36, 0.25);
+  background: var(--aimz-red-bright) !important;
+  box-shadow: 0 0 14px rgba(237,28,36,.28);
 }
 
-/* =========================
-   LINKS + ACCENTS
-   ========================= */
-
-a {
-  color: var(--aimz-red-bright);
+/* Message box */
+[class*="channelTextArea"] [class*="scrollableContainer"] {
+  background: rgba(8,8,8,.72) !important;
+  border: 1px solid rgba(237,28,36,.16);
 }
 
-a:hover {
-  color: #ff6268;
+[class*="channelTextArea"] [class*="scrollableContainer"]:focus-within {
+  border-color: rgba(237,28,36,.48);
+  box-shadow: var(--aimz-glow);
 }
 
-/* =========================
-   SEARCH
-   ========================= */
-
+/* Search */
 [class*="searchBar"] {
-  background: #101010 !important;
-  border: 1px solid rgba(237, 28, 36, 0.10);
+  background: rgba(8,8,8,.70) !important;
+  border: 1px solid rgba(237,28,36,.12);
 }
 
 [class*="searchBar"]:focus-within {
-  border-color: rgba(237, 28, 36, 0.38);
-  box-shadow: 0 0 12px rgba(237, 28, 36, 0.12);
+  border-color: rgba(237,28,36,.42);
+  box-shadow: 0 0 12px rgba(237,28,36,.12);
 }
 
-/* =========================
-   POPOVERS / MENUS
-   ========================= */
-
+/* Menus / popouts */
 [class*="popout"],
 [class*="menu"],
 [class*="layerContainer"] [class*="container"] {
-  background: #0c0c0c !important;
-  border: 1px solid rgba(237, 28, 36, 0.13);
+  background: rgba(8,8,8,.90) !important;
+  border: 1px solid rgba(237,28,36,.16);
   box-shadow:
-    0 18px 50px rgba(0, 0, 0, 0.55),
-    0 0 20px rgba(237, 28, 36, 0.06);
+    0 18px 50px rgba(0,0,0,.58),
+    0 0 20px rgba(237,28,36,.07);
+  backdrop-filter: blur(12px);
 }
 
 [class*="item"]:hover {
-  background: rgba(237, 28, 36, 0.10) !important;
+  background: rgba(237,28,36,.11) !important;
 }
 
-[class*="item"][aria-selected="true"] {
-  background: rgba(237, 28, 36, 0.14) !important;
-  color: #ffffff !important;
+/* Links */
+a {
+  color: var(--aimz-red-bright) !important;
 }
 
-/* =========================
-   MEMBERS
-   ========================= */
-
-[class*="membersWrap"],
-[class*="member"],
-[class*="membersGroup"] {
-  background: transparent !important;
+a:hover {
+  color: #ff646b !important;
 }
 
-[class*="membersWrap"] [class*="member"]:hover {
-  background: rgba(237, 28, 36, 0.055) !important;
+/* Badges / unread */
+[class*="numberBadge"],
+[class*="unreadPill"] {
+  background-color: var(--aimz-red) !important;
 }
 
-/* =========================
-   SCROLLBARS
-   ========================= */
-
-::-webkit-scrollbar {
-  width: 7px;
-  height: 7px;
-}
-
-::-webkit-scrollbar-track {
-  background: transparent;
-}
-
+/* Scrollbars */
 ::-webkit-scrollbar-thumb {
-  background: rgba(237, 28, 36, 0.32);
+  background: rgba(237,28,36,.38) !important;
   border-radius: 10px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(237, 28, 36, 0.62);
+  background: rgba(237,28,36,.68) !important;
 }
 
-/* =========================
-   SELECTION
-   ========================= */
-
+/* Text selection */
 ::selection {
-  background: rgba(237, 28, 36, 0.35);
-  color: #ffffff;
+  background: rgba(237,28,36,.36);
+  color: white;
 }
 
-/* =========================
-   AIMZ RED STATUS / BADGES
-   ========================= */
-
-[class*="numberBadge"] {
-  background-color: var(--aimz-red) !important;
-}
-
-[class*="unread"] [class*="unreadPill"] {
-  background: var(--aimz-red) !important;
-}
-
-/* =========================
-   OPTIONAL LOGO WATERMARK
-   Set --aimz-watermark-opacity to 0 to disable.
-   ========================= */
-
-:root {
-  --aimz-watermark-opacity: 0.018;
-}
+/* ===== Optional Aimz watermark ===== */
 
 main[class*="chatContent"]::after {
   content: "";
   position: absolute;
-  width: 420px;
-  height: 420px;
-  right: 4%;
+  width: 300px;
+  height: 300px;
+  right: 3%;
   bottom: 2%;
   pointer-events: none;
-  background: var(--aimz-logo) center / contain no-repeat;
-  opacity: var(--aimz-watermark-opacity);
+  background: var(--home-button-image) center / contain no-repeat;
+  opacity: .018;
   filter: grayscale(1);
-}
-
-/* =========================
-   RED GLOW FOR ACTIVE ELEMENTS
-   ========================= */
-
-[class*="selected"]::after,
-[aria-selected="true"]::after {
-  box-shadow: 0 0 12px rgba(237, 28, 36, 0.12);
-}
-
-/* =========================
-   REDUCE HARSH DISCORD WHITE
-   ========================= */
-
-[class*="icon"] {
-  transition: color 140ms ease, filter 140ms ease;
-}
-
-[class*="icon"]:hover {
-  filter: drop-shadow(0 0 4px rgba(237, 28, 36, 0.20));
 }
