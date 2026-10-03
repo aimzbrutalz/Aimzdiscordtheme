@@ -33,10 +33,7 @@
   --popout-modal-size: cover;
   --popout-modal-position: center;
 
-  /* ===== Aimz Home Logo ===== */
-  --home-button-image: url('https://raw.githubusercontent.com/aimzbrutalz/Aimzdiscordtheme/main/assets/aimz-logo.png');
-  --home-button-size: cover;
-  --home-button-position: center;
+ 
 
   /* ===== Brightness / Frosted Glass ===== */
   --serverlist-brightness: 0.42;
